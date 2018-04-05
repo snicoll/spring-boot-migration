@@ -1,6 +1,10 @@
 package com.example.speakerservice;
 
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
+
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.convert.DurationUnit;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,10 +17,11 @@ public class HelloProperties {
 	private String target = "World";
 
 	/**
-	 * Timeout in seconds after which the server gets angry if it doesn't get an answer to
-	 * a welcome message.
+	 * Timeout after which the server gets angry if it doesn't get an answer to
+	 * a welcome message. If a duration suffix is not specified, seconds will be used.
 	 */
-	private long answerTimeout = 3;
+	@DurationUnit(ChronoUnit.SECONDS)
+	private Duration answerTimeout = Duration.ofSeconds(3);
 
 	public String getTarget() {
 		return this.target;
@@ -26,11 +31,11 @@ public class HelloProperties {
 		this.target = target;
 	}
 
-	public long getAnswerTimeout() {
+	public Duration getAnswerTimeout() {
 		return this.answerTimeout;
 	}
 
-	public void setAnswerTimeout(long answerTimeout) {
+	public void setAnswerTimeout(Duration answerTimeout) {
 		this.answerTimeout = answerTimeout;
 	}
 

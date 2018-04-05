@@ -17,7 +17,7 @@ public class HomeController {
 	@GetMapping("/")
 	public String hello() {
 		return String.format("Hello %s (You have %d seconds)",
-				this.properties.getTarget(), this.properties.getAnswerTimeout());
+				this.properties.getTarget(), this.properties.getAnswerTimeout().getSeconds());
 	}
 
 }
