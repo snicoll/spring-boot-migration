@@ -18,6 +18,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 				.requestMatchers(EndpointRequest.to(InfoEndpoint.class, HealthEndpoint.class)).permitAll()
+				.requestMatchers(EndpointRequest.to("prometheus")).permitAll()
 				.requestMatchers(EndpointRequest.toAnyEndpoint()).hasRole("HERO")
 				.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
 				.anyRequest().authenticated()
