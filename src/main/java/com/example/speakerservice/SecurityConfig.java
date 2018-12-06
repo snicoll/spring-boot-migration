@@ -19,10 +19,11 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	@Bean
+	@SuppressWarnings("deprecation")
 	public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
 		return new InMemoryUserDetailsManager(
-				User.builder().username("user").password("user").roles("USER").build(),
-				User.builder().username("hero").password("hero").roles("USER", "HERO").build()
+				User.withDefaultPasswordEncoder().username("user").password("user").roles("USER").build(),
+				User.withDefaultPasswordEncoder().username("hero").password("hero").roles("USER", "HERO").build()
 		);
 	}
 
